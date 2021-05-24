@@ -1,0 +1,4 @@
+A computer is an electronic device which takes information in digital form and performs a series of operations based on predetermined instructions to give some output.
+A supercomputer is a computer which operates at several orders of magnitude greater speed and capacity than everyday general purpose computers, like the one you are talking to me on.
+Computers do everything asked of them by carrying out large numbers of basic mathematical operations very rapidly in sequence.
+Processor is an electronic component in which all of the parts are part of a contiguous silicon chip, instead of discrete components mounted on a larger circuit board.

@@ -1,0 +1,5 @@
+Artificial Intelligence refers to the intelligence of machines.
+With Artificial Intelligence, machines perform functions such as learning, planning, reasoning and problem solving.
+The categorization of Artificial Intelligence is into four types.
+AI has significant use in healthcare also in business, education, manufacturing, military and other fields.
+The field of AI research was born at a workshop at Dartmouth College in 1956, where the term "Artificial Intelligence" was coined by John McCarthy to distinguish the field from cybernetics and escape the influence of the cyberneticist Norbert Wiener.

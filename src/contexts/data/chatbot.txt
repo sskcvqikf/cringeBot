@@ -1,0 +1,3 @@
+A chatbot is a software application used to conduct an on-line chat conversation via text or text-to-speech.
+Chatbots are used in dialog systems for various purposes including customer service, request routing, or information gathering.
+Most chatbots are accessed on-line via website popups or through virtual assistants.
