@@ -97,7 +97,7 @@ labelsep=gost}
   \chapter*{#1}%
   \addcontentsline{toc}{chapter}{\uppercase{#1}}}
 
-\graphicspath{{./}}
+\graphicspath{{./screens}}
 
 \setlist[enumerate]{leftmargin=4em}
 
@@ -258,6 +258,9 @@ labelsep=gost}
     \end{itemize}
     Приклад:
     \inputminted[breaklines,linenos=true]{yaml}{./sample.yaml}
+        \item Алгоритм формування відповіді
+
+        В якості бібліотеки, яка дає можливості знаходження відповідей, була обрана transformers. Це бібліотека, в якій зібрано багато архітектур різних трансоформерів. Також бібліотека надає можливість використовувати вже навчені моделі. Через те, що в нас немає таких потужностей, які б могли навчити модель подібного рівня. 
 
     \subsection{Алгоритм формування відповіді}
     В якості бібліотеки, яка дає можливості знаходження відповідей, була обрана transformers. Це бібліотека, в якій зібрано багато архітектур різних трансформерів. Також бібліотека надає можливість використовувати вже навчені моделі. Через те, що в нас немає таких потужностей, які б могли навчити модель подібного рівня.
@@ -281,6 +284,28 @@ labelsep=gost}
 
 \end{thebibliography}
 
+\newpage
+
+\chap{Додаток 1}
+\centerline{\uppercase{\bf{Програмна реалізація}}}
+    \inputminted[breaklines,linenos=true]{python}{../../src/app.py}
+
+\chap{Додаток 2}
+\centerline{\uppercase{\bf{Результати роботи}}}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.75\textwidth]{f1.png}
+    \end{figure}
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.75\textwidth]{f2.png}
+    \end{figure}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.75\textwidth]{f3.png}
+    \end{figure}
 \end{document}
 
 

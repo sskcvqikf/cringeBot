@@ -80,13 +80,13 @@ def send_message(r: Request):
 def handle_message(r: Request):
     context = get_context(r.req_message)
     if context is None:
-        r.resp_message = "hello or smtng, i dont speak normal language"
+        r.resp_message = "I am question-ansering bot. I dont support basic questions like 'how are you' or 'hello'. Also, I dont support questions from topics, that are not in my database."
         return
     r.resp_message = get_answer(r.req_message, context)
 
 
 def handle_error(r: Request):
-    r.resp_message = "i dont support anything but text"
+    r.resp_message = "I support only text messages. No pictures, no editing, no deleting."
 
 
 def get_chat_id(jsn: dict) -> int:
@@ -118,7 +118,7 @@ def handler():
         sended = send_message(r)
         return jsonify(sended)
     else:
-        return "yoooo how did u find this url?"
+        return "Get is not supported"
 
 
 def load_data():
