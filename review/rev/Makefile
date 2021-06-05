@@ -3,3 +3,7 @@ all:
 
 clear:
 	latexmk -c
+
+plaintext:
+	mkdir -p build/
+	pandoc main.tex --wrap=none -t plain -o build/main.txt
