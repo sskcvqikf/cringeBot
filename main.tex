@@ -1,0 +1,167 @@
+\documentclass[a4paper,14pt]{extarticle}
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian,ukrainian]{babel}
+\usepackage{minted}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{fontspec} 
+\usepackage{dirtytalk}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\def\equationautorefname~#1\null{(#1)\null}
+
+\setmainfont{Liberation Serif}
+
+\geometry{
+    a4paper,
+    left=20mm,
+    top=20mm,
+    right=10mm,
+    bottom=20mm
+}
+
+\setlength{\emergencystretch}{2em}
+\linespread{1.25}
+
+\begin{document}
+\begin{titlepage}
+	\centering
+    Міністерство освіти і науки України
+    
+    Харківський національний университет радіоелектроніки
+
+    \vspace{1cm}
+    Кафедра штучного інтелекту
+
+    \vspace{2cm}
+    Дисципліна: \say{Теорія прийняття рішень}
+
+    \vspace{2cm}
+    \uppercase{Лабораторна робота 5}
+
+    
+    % название лабораторной работы
+    \uppercase{\say{РАНЖИРОВАНИЕ ОБЪЕКТОВ ПО РЕЗУЛЬТАТАМ
+    ПОПАРНЫХ СРАВНЕНИЙ}}
+
+    \vspace{4cm}
+    \begin{minipage}[t]{10cm}
+        Виконав ст. гр. ІТШІ-18-1:\\
+        Соколенко Дмитро Олександрович
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{6cm}
+        Прийняв:\\
+        ст. в. Стьопін О. С.\\
+        з оцінкою \say{\rule{2cm}{0.15mm}}\\
+        \say{\rule{0.7cm}{0.15mm}}\rule{2cm}{0.15mm}20\rule{0.7cm}{0.15mm}р
+    \end{minipage}
+
+	\vfill
+
+	{Харків \the\year{}}
+\end{titlepage}
+\section*{Цель}
+Изучение методов ранжирования объектов
+
+\section{Порядок выполнения работы}
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.75\textwidth]{2021-06-02_11-03.png}
+%     \caption{Матрица для варианта 19}
+%     \label{fig:plot3}
+% \end{figure}
+
+\subsection{Описание метода решения}
+Простейшим способом расчёта рейтинга объектов является суммирование
+строк матрицы. Вместе с тем, такой способ не позволяет учесть внутреннюю
+структуру матрицы попарных сравнений.
+
+Согласно более совершенному методу рейтингования рейтинги объектов
+представляют собой элементы собственного вектора матрицы попарных
+сравнений ($A$), соответствующего её наибольшему собственному значению.
+
+Для нахождения такого собственного вектора можно использовать
+итерационный алгоритм
+\begin{equation*}
+    x_i^{(k+1)}=y_i^{(k)}\cdot\left( \sum_{i=1}^n y_i^{(k)} \right)^{-1}
+\end{equation*}
+\begin{equation*}
+    y_i^{(k)} = Ax^{(k)}
+\end{equation*}
+где $x$ – искомый собственный вектор матрицы, $y$ – вспомогательный
+вектор, $k$ – номер итерации.
+
+\subsection{Описание ПО}
+Для выполнения работы использовались язык Python и библиотека
+numpy.
+
+\subsection{Результат}
+Максимальное количество циклов: 8
+
+Количество циклов: 6
+
+Согласованность: 0.25
+
+Рейтинги методом суммирования:
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ |c|c|c|c|c|c| } 
+     \hline
+        A    & B & C & D & E& F \\ \hline
+        0.25 & 0.1388 & 0.1944 & 0.1388 & 0.0833 & 0.1944\\ \hline
+    \end{tabular}
+    \caption{Метод суммирования}
+\end{table}
+
+Рейтинги на всех итерациях:
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.75\textwidth]{2021-06-02_11-49.png}
+%     \caption{Рейтинги на всех итерациях}
+% \end{figure}
+
+Рейтинги методом собственного вектора:
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ |c|c|c|c|c|c| } 
+     \hline
+        A    & B & C & D & E& F \\ \hline
+        0.2378& 0.1498& 0.2310& 0.1134& 0.1035& 0.1642\\ \hline
+    \end{tabular}
+    \caption{Метод собственного вектора}
+\end{table}
+
+\subsection{Листинг программы}
+% \inputminted[breaklines,linenos=true]{python}{main.py}
+
+\section*{Выводы}
+Во время выполнения лабораторной работы мы 
+изучили методы ранжирования объектов.
+
+\end{document}
+
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.75\textwidth]{rplot_iris.png}
+%     \caption{Графік дерева вибірки Iris з дискретизацією через IG}
+%     \label{fig:plot3}
+% \end{figure}
+
+% \begin{table}[H]
+%     \centering
+%     \begin{tabular}{ |c|c|c|c| } 
+%      \hline
+%      Мова   & \multicolumn{3}{c|}{Метод та датасет} \\ \hline
+%             & Iris Thr. & Iris IG & SUSY \\ \hline
+%      Python & 0.9333    & 0.9333  & 0.6799 \\ \hline
+%      R      & 0.9333    & 0.9777  & 0.6594 \\ 
+%      \hline
+%     \end{tabular}
+%     \caption{Порівняння точності класифікації}
+%     \label{tab:t1}
+% \end{table}
+% \inputminted[breaklines,linenos=true]{scilab}{repl235.txt}
