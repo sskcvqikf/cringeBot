@@ -1,30 +1,98 @@
-\documentclass[a4paper,14pt]{extarticle}
-\usepackage[T1,T2A]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage[english,russian,ukrainian]{babel}
-\usepackage{minted}
-\usepackage{geometry}
-\usepackage{graphicx}
-\usepackage{fontspec}
+\documentclass[a4paper,14pt]{extreport}
+
+\usepackage[utf8]{inputenc} % Set Encoding
+\usepackage[T1]{fontenc} % Enable cyrillic fonts
+\usepackage{fontspec} % Using custom fonts (requires -xelatex flag)
+\usepackage{ifplatform} % Cross platform
+\usepackage[russian,english,ukrainian]{babel} % Using languages
+\usepackage{geometry} % Set margins
+\usepackage{titlesec} % For section modification
+\usepackage{indentfirst} % Inserts indents in paragraphs
+\usepackage{minted} % For code listing
+\usepackage{graphicx} % For image insertions
+\usepackage{float} % For positioning
+\usepackage[section]{placeins}
+\usepackage{fancyhdr}
+\usepackage{caption}
 \usepackage{dirtytalk}
-\usepackage{amsmath}
+\usepackage{chngcntr}
 \usepackage{hyperref}
-\usepackage{indentfirst}
 
-\def\equationautorefname~#1\null{(#1)\null}
+\counterwithout{section}{chapter}
 
-\setmainfont{Liberation Serif}
+\pagestyle{fancy}
+
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\fancyheadoffset{0mm}
+\fancyfootoffset{0mm}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \rhead{\thepage}}
+
+
+\pagenumbering{gobble}
+
+\usemintedstyle{bw}
 
 \geometry{
-    a4paper,
-    left=20mm,
-    top=20mm,
-    right=10mm,
-    bottom=20mm
+  a4paper,
+  left=30mm,
+  right=20mm,
+  top=20mm,
+  bottom=20mm
 }
 
-\setlength{\emergencystretch}{2em}
-\linespread{1.25}
+\DeclareCaptionLabelFormat{gostfigure}{Рисунок #2}
+\DeclareCaptionLabelFormat{gosttable}{Таблиця #2}
+\DeclareCaptionLabelSeparator{gost}{~---~}
+\captionsetup{labelsep=gost}
+\captionsetup[figure]{labelformat=gostfigure, justification=centering,
+labelsep=gost}
+\captionsetup[table]{labelformat=gosttable, labelsep=gost}
+
+\setlength\parindent{2.5em}
+\renewcommand{\baselinestretch}{2.0}
+\linespread{1.3} % Set default line spacing
+
+\iflinux
+\setmainfont{Liberation Serif} % Set default font on Linux
+\fi
+\ifwindows
+\setmainfont{Times New Roman} % Set default font on Windows
+\fi
+
+\titleformat{\section}
+{\normalfont}{\thesection}{1em}{}
+
+\titleformat{\subsection}
+{\normalfont}{\thesubsection}{1em}{}
+
+\titleformat{\subsubsection}
+{\normalfont}{\thesubsubsection}{1em}{}
+
+\titleformat{\chapter}[block]
+    {\filcenter\bfseries}
+    {\thechapter}
+    {1em}
+    {\MakeUppercase}{}
+
+\renewcommand{\headrulewidth}{0pt}
+
+\titlespacing{\chapter}{0pt}{-30pt}{2em}
+\titlespacing\section{0cm}{1ex}{1ex}
+\titlespacing\subsection{0cm}{1ex}{1ex}
+
+\newcommand\chap[1]{%
+  \chapter*{#1}%
+  \addcontentsline{toc}{chapter}{#1}}
+
+\graphicspath{{./}}
+
 
 \begin{document}
 \begin{titlepage}
@@ -64,10 +132,23 @@
 
 	{Харків \the\year{}}
 \end{titlepage}
-\section*{Вступ}
-Изучение методов ранжирования объектов
 
+\tableofcontents
+\newpage
+
+\pagenumbering{arabic}
+\setcounter{page}{3}
+\chap{Вступ}
+    \par Дана робота присвячена побудові чатботу, що відповідає на запитання користувача, які побудовані природною мовою. Бот не підтримує діалог на побутові теми, тобто йому не можна написати "Hello" або "How are you?". Але бот дуже гарно (як для бота) відповідає на запитання, що поставив користувач. \par
+    Ми живемо в епоху інформаційних технологій, які увійшли у життя кожного з нас. Кількість інформації зростає з кожним днем і знаходити відповіді на питання, що вас цікавлять стає складніше. З іншого ж боку, технології машинного навчання теж зростають так швидко, як ніяк раньше. І це призводить нас до концепту: використати сучасні технології для вирішення сучасних проблем. Тобто ми можемо побудувати таку систему, що буде знаходити відповіді на питання, що нас цікавлять. І робити система це може інтерактивно, тобто у форматі чатботу, якому ви пишите повідомлення, яке містить питання і на яке бот якось змістовно відповідає. \par
+    Дуже багато компаній вже використовують такі технології, бо вони допомогають новим користувачам або клієнтам у використанні системи. Вони відповідають на базові питання про функціонування системи, і тим самим допомагають людям розібратися у роботі системи. 
+
+\chap{Основна частина}
 \section{Аналіз предметної області}
+    Сучасні технології та архітектури штучних нейронних мереж дозволяють проводити успішний аналіз текстів, що написані природною мовою. Як приклад можна привести GPT-3 (Generative Pre-trained Transformer 3), яка була розроблена лабораторією OpenAI, яка змогла написати текст, який було складно відрізнити від тексту, який написала би людина. Звісно, подібні технології можуть нести небезпеку, бо можуть використовуватися проти людей. \par
+    Але також ці технології успішно використовуються для допомоги людству. Це настільки продвинуті та потужні системи, що немає жодного сенсу обмежувати подібні моделі якоюсь однією предметною областю. Замість цього, можна побудувати таку систему, яка буде шукати відповіді у зазначених базах знань. Потужність таких систем дозволяє виходити на рівень такий рівень абстракції, що не враховує конкретної теми запитання, а шукає семантично у просторі векторизованих слів та речень. \par
+    Звісно, щоб мати можливість навчати та запускати моделі такої складності необхідні великі потужності. Але можна використовувати вже навчені моделі. Наприклад, є моделі, що вже навчені на датасеті SQUAd або навіть на всій Wikipedia. Як базу знань для такої навченої моделі можна використовувати якусь статтю, або взагалі написати самому невеликий текст, по якому буде проводитися пошук відповіді. Потім написати декілька таких текстів, які насправді називаються контекстами, та обирати необхідний, який ми будемо обирати за ключовими словами у питанні. \par
+    Тобто, постановка задачі - побудувати таку систему, яка могла б легко розширюватися новими темами питань.
 
 \section{Порівняння до альтернатив}
 
@@ -137,11 +218,9 @@ Python найбільш гарно підходить для виконання 
 \subsection{Мова розмітки для написання звіту}
 
 
-\section{}
-
 \section{Опис програмного продукту}
 
-\section*{Висновки}
+\chap{Висновки}
 Во время выполнения лабораторной работы мы 
 изучили методы ранжирования объектов.
 
