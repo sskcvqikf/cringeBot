@@ -7,3 +7,5 @@ __pycache__/
 *.pickle
 *.sqlite3
 build/
+__latexindent_temp.tex
+_minted-main/
