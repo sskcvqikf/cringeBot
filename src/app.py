@@ -80,7 +80,7 @@ def send_message(r: Request):
 def handle_message(r: Request):
     context = get_context(r.req_message)
     if context is None:
-        r.resp_message = "I am question-ansering bot. I dont support basic questions like 'how are you' or 'hello'. Also, I dont support questions from topics, that are not in my database."
+        r.resp_message = "I am a question-answering bot. I don't support basic questions like 'how are you' or 'hello'. Also, I don't support questions on topics which aren't in my database."
         return
     r.resp_message = get_answer(r.req_message, context)
 
